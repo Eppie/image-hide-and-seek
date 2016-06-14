@@ -6,4 +6,4 @@ Test case file format:
 2. **N** times, the following format:
   1. One line, containing the name of the image to be tested
   2. One line, containing one integer **M**, which is the number of colors to be found for this image
-  3. **M** lines, each containing three space separated images, which represent an RGB color.
+  3. **M** lines, each containing three space separated integers, which represent an RGB color.
