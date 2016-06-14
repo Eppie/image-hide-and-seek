@@ -12,6 +12,7 @@ def mid(x, y):
 
 
 class Finder:
+
     def __init__(self, image_name, c):
         self.image_name = image_name,
         self.c = c
@@ -62,15 +63,8 @@ class Finder:
         if self.found:
             count = len(self.visited)
             ratio = float(count) / (self.sx * self.sy)
-            print len(self.visited), ratio, self.position, self.L[self.position[0], self.position[1]], "=", self.c
+            print(count, ratio, self.position, self.L[self.position[0], self.position[1]], "=", self.c)
             return count
         else:
-            print self.c, "not found"
+            print(self.c, "not found")
             return 0
-
-if __name__ == "__main__":
-    image_name = "turret-arch"
-    c = (116, 70, 36)
-    F = Finder(image_name, c)
-    F.start()
-    F.result()

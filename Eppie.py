@@ -38,10 +38,3 @@ def random_search(image_name, c):
                 print('count: {}, percent: {}, position: {}'.format(count, p, (i, j)))
                 return count
     return 0
-
-
-
-if __name__ == "__main__":
-    image_name = "turret-arch"
-    c = (116, 70, 36)
-    linear_search(image_name, c)
