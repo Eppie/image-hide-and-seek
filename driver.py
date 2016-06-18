@@ -4,6 +4,10 @@ import Eppie
 import Karl
 
 
+def run_gradient_descent(image_name, c):
+    return Eppie.gradient_descent(image_name, c)
+
+
 def run_random_search(image_name, c):
     return Eppie.random_search(image_name, c)
 
@@ -28,6 +32,7 @@ def run(func):
             for _ in range(num_tests):
                 c = tuple(map(int, f.readline().split()))
                 total_count += func(image_name, c)
+                print('total so far: {}'.format(total_count))
     print total_count
 
-run(run_random_search)
+run(run_gradient_descent)
