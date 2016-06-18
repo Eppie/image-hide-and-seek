@@ -8,6 +8,7 @@ random.seed(1)
 
 SAVE_IMAGES = False
 
+
 def dist(x, y):
     return sum([(x[i] - y[i]) ** 2 for i in range(3)])
 
