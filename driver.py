@@ -28,11 +28,14 @@ def run(func):
         num_images = int(f.readline())
         for _ in range(num_images):
             image_name = f.readline().strip()
+            print(image_name)
             num_tests = int(f.readline())
             for _ in range(num_tests):
                 c = tuple(map(int, f.readline().split()))
-                total_count += func(image_name, c)
-                print('total so far: {}'.format(total_count))
-    print total_count
+                count = func(image_name, c)
+                total_count += count
+                # print('total so far: {}'.format(total_count))
+            print('')
+    print('Total: {}'.format(total_count))
 
 run(run_gradient_descent)
