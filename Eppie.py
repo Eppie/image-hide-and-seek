@@ -43,17 +43,17 @@ def gradient_descent(image_name, c):
 
         if c_color == c:
             p = float(len(visited)) / (sx * sy) * 100
-            print('count: {}, percent: {}, position: {}'.format(len(visited), p, (x, y)))
+            print('color: {}, count: {} / {}%, position: {}'.format(c, len(visited), p, (x, y)))
             if SAVE_IMAGES:
                 im.save(image_name + '_' + str(c[0]) + '_' + str(c[1]) + '_' + str(c[2]) + '_' + '{:05}'.format((count / 50000) + 1) + '.png')
             return len(visited)
 
-        if count % 50000 == 0:
-            p = float(count) / (sx * sy) * 100
-            print('position: {}, dist: {}, count: {}, visited %: {}, heap size: {}'.format((x, y), dist(c, c_color), count, p, len(heap)))
-            if SAVE_IMAGES:
-                L[x, y] = (255, 0, 0)
-                im.save(image_name + '_' + str(c[0]) + '_' + str(c[1]) + '_' + str(c[2]) + '_' + '{:05}'.format(count / 50000) + '.png')
+        # if count % 50000 == 0:
+            # p = float(count) / (sx * sy) * 100
+            # print('position: {}, dist: {}, count: {}, visited %: {}, heap size: {}'.format((x, y), dist(c, c_color), count, p, len(heap)))
+            # if SAVE_IMAGES:
+                # L[x, y] = (255, 0, 0)
+                # im.save(image_name + '_' + str(c[0]) + '_' + str(c[1]) + '_' + str(c[2]) + '_' + '{:05}'.format(count / 50000) + '.png')
 
         newpoints = []
         newpoints.append((x + 1, y))
