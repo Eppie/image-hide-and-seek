@@ -4,8 +4,8 @@ import Eppie
 import Karl
 
 
-def run_gradient_descent(image_name, c):
-    return Eppie.gradient_descent(image_name, c)
+def run_gradient_descent(image_name, c, save_image=False):
+    return Eppie.gradient_descent(image_name, c, save_image)
 
 
 def run_random_search(image_name, c):

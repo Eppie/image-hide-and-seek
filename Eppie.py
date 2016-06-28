@@ -6,20 +6,21 @@ import random
 
 random.seed(1)
 
-SAVE_IMAGES = False
-
 
 def dist(x, y):
     return sum([(x[i] - y[i]) ** 2 for i in range(3)])
 
 
-def gradient_descent(image_name, c):
-    im = Image.open(image_name + '.jpg').convert('RGB')
+def gradient_descent(image_name, c, SAVE_IMAGES=False):
+    im = Image.open('images/' + image_name + '.jpg').convert('RGB')
     L = im.load()
     sx, sy = im.size
     heap = []
     visited = set()
     count = 0
+    iters_between_save = 10000
+    # color_to_set = (255 - c[0], 255 - c[1], 255 - c[2])
+    color_to_set = (0, 255, 0)
     points = []
     for i in range(0, sx, sx / 98):
         for j in range(0, sy, sy / 98):
@@ -40,20 +41,20 @@ def gradient_descent(image_name, c):
         x, y = n[1]
         c_color = L[x, y]
         count += 1
+        L[x, y] = color_to_set
 
         if c_color == c:
             p = float(len(visited)) / (sx * sy) * 100
             print('color: {}, count: {} / {}%, position: {}'.format(c, len(visited), p, (x, y)))
             if SAVE_IMAGES:
-                im.save(image_name + '_' + str(c[0]) + '_' + str(c[1]) + '_' + str(c[2]) + '_' + '{:05}'.format((count / 50000) + 1) + '.png')
+                im.save(image_name + '_' + str(c[0]) + '_' + str(c[1]) + '_' + str(c[2]) + '_' + '{:05}'.format((count / iters_between_save) + 1) + '.png')
             return len(visited)
 
-        # if count % 50000 == 0:
-            # p = float(count) / (sx * sy) * 100
-            # print('position: {}, dist: {}, count: {}, visited %: {}, heap size: {}'.format((x, y), dist(c, c_color), count, p, len(heap)))
-            # if SAVE_IMAGES:
-                # L[x, y] = (255, 0, 0)
-                # im.save(image_name + '_' + str(c[0]) + '_' + str(c[1]) + '_' + str(c[2]) + '_' + '{:05}'.format(count / 50000) + '.png')
+        if count % iters_between_save == 0:
+            p = float(count) / (sx * sy) * 100
+            print('position: {}, dist: {}, count: {}, visited %: {}, heap size: {}'.format((x, y), dist(c, c_color), count, p, len(heap)))
+            if SAVE_IMAGES:
+                im.save(image_name + '_' + str(c[0]) + '_' + str(c[1]) + '_' + str(c[2]) + '_' + '{:05}'.format(count / iters_between_save) + '.png')
 
         newpoints = []
         newpoints.append((x + 1, y))
@@ -76,7 +77,7 @@ def gradient_descent(image_name, c):
 
 
 def linear_search(image_name, c):
-    im = Image.open(image_name + '.jpg').convert('RGB')
+    im = Image.open('images/' + image_name + '.jpg').convert('RGB')
     L = im.load()
     sx, sy = im.size
     count = 0
@@ -91,7 +92,7 @@ def linear_search(image_name, c):
 
 
 def random_search(image_name, c):
-    im = Image.open(image_name + '.jpg').convert('RGB')
+    im = Image.open('images/' + image_name + '.jpg').convert('RGB')
     L = im.load()
     sx, sy = im.size
     count = 0

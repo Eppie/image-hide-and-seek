@@ -18,7 +18,7 @@ class Finder:
         self.c = c
         self.found = False
         self.position = None
-        self.im = Image.open(image_name + ".jpg").convert("RGB")
+        self.im = Image.open('images/' + image_name + ".jpg").convert("RGB")
         self.L = self.im.load()
         self.sx, self.sy = self.im.size
         self.im.close()
